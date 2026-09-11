@@ -65,7 +65,6 @@ The ESP32 uses the VSPI peripheral for SPI communication.
 
 The SPI interface is initialized using:
 
-```cpp
 SPIClass *spi = new SPIClass(VSPI);
 
 An SPI transaction is started using:
