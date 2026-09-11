@@ -1,127 +1,108 @@
-# ESP32-Arduino SPI Communication
+# SPI Communication – Master & Slave
 
-A simple embedded systems project demonstrating SPI communication between an ESP32 and an Arduino Uno.
-
-The ESP32 is configured as the SPI Master, while the Arduino Uno operates as the SPI Slave. The project demonstrates data exchange between the two microcontrollers using the SPI protocol.
+A simple embedded communication project demonstrating SPI (Serial Peripheral Interface) communication between a Master device and a Slave device.
 
 ## Project Overview
 
-In this project, the ESP32 reads the state of a push button and sends the corresponding data to the Arduino Uno through SPI.
+This project demonstrates how two embedded devices can communicate using the SPI communication protocol.
 
-The Arduino Uno receives the data as the SPI Slave and processes the received information. LEDs are used to demonstrate the result of the communication.
+One device operates as the SPI Master and controls the communication, while the other device operates as the SPI Slave and responds to data transmitted by the Master.
 
-This project provides practical experience with SPI communication between two different microcontroller platforms.
+The project demonstrates SPI communication, Master/Slave architecture, data transmission, and hardware interfacing.
 
 ## Features
 
-- ESP32 as SPI Master
-- Arduino Uno as SPI Slave
-- Hardware SPI communication
-- Push button input
-- LED output
-- Data transmission between two microcontrollers
-- Master/Slave communication architecture
+- SPI Master/Slave communication
+- Serial Peripheral Interface (SPI) protocol
+- Master-controlled communication
+- Data transmission between two devices
+- Fritzing circuit diagram
+- Hardware implementation
+- Arduino-based embedded programming
 
 ## Hardware
 
-- ESP32 Development Board
-- Arduino Uno
-- Push Buttons
-- LEDs
-- Resistors
+- Arduino-compatible development boards
 - Breadboard
-- Jumper Wires
+- Jumper wires
+- USB cables
+- SPI-compatible hardware
 
 ## SPI Communication
 
-The ESP32 acts as the SPI Master and initiates the communication.
+SPI is a synchronous serial communication protocol commonly used in embedded systems.
 
-The Arduino Uno acts as the SPI Slave and responds to the Master's SPI transactions.
+It typically uses four main signals:
 
-### SPI Signals
+| SPI Signal | Description |
+|---|---|
+| MOSI | Master Out, Slave In |
+| MISO | Master In, Slave Out |
+| SCK | Serial Clock |
+| SS / CS | Slave Select / Chip Select |
 
-| SPI Signal | ESP32 Master | Arduino Uno Slave |
-|------------|--------------|-------------------|
-| MOSI | Master Out | Slave In |
-| MISO | Master In | Slave Out |
-| SCK | SPI Clock | SPI Clock |
-| SS/CS | Slave Select | Slave Select |
-| GND | Ground | Ground |
+The Master generates the clock signal and controls the Slave Select line. The Slave communicates with the Master when it is selected.
+
+## Master and Slave
+
+### SPI Master
+
+The Master initiates communication and generates the SPI clock.
+
+The `SPI_Master.ino` file contains the code for the SPI Master device.
+
+### SPI Slave
+
+The Slave responds to communication initiated by the Master.
+
+The `SPI_Slave.ino` file contains the code for the SPI Slave device.
+
+## Pin Configuration
+
+For an Arduino Uno/Nano-style SPI interface:
+
+| SPI Signal | Arduino Pin |
+|---|---|
+| MOSI | D11 |
+| MISO | D12 |
+| SCK | D13 |
+| SS / CS | D10 |
+| GND | GND |
+
+The corresponding SPI pins should be connected between the Master and Slave devices.
+
+> Note: SPI pin assignments may vary depending on the microcontroller or development board being used.
+
+## Circuit Diagram
+
+### Fritzing Diagram
+
+![SPI Communication Circuit](SPI-communication-Fritzing.png)
+
+### Hardware Setup
+
+![Hardware Setup](SPI-communication.jpg)
 
 ## How It Works
 
-1. The ESP32 reads the push button state.
-2. The button state is converted into a data value.
-3. The ESP32 starts an SPI transaction.
-4. The ESP32 sends the data to the Arduino Uno.
-5. The Arduino Uno receives the data as the SPI Slave.
-6. The received data is processed by the Arduino Uno.
-7. The LED state is controlled according to the received data.
-8. The Arduino Uno can also return data to the ESP32 through the SPI MISO line.
+1. The SPI Master initializes the SPI interface.
+2. The SPI Slave initializes its SPI interface and waits for communication.
+3. The Master selects the Slave using the SS/CS signal.
+4. The Master generates the SPI clock.
+5. Data is transmitted through the MOSI line.
+6. The Slave can return data through the MISO line.
+7. The communication continues according to the SPI configuration.
+8. The Master releases the Slave Select line when the transmission is complete.
 
-## ESP32 SPI Master
+## SPI Data Transfer
 
-The ESP32 uses the VSPI peripheral for SPI communication.
+SPI supports full-duplex communication, meaning data can be transmitted and received simultaneously.
 
-The SPI interface is initialized using:
-
-SPIClass *spi = new SPIClass(VSPI);
-
-An SPI transaction is started using:
-
-spi->beginTransaction(SPISettings());
-
-Data is exchanged using:
-
-int daryafti = spi->transfer(data);
-Arduino Uno SPI Slave
-
-The Arduino Uno is configured as the SPI Slave.
-
-It receives data from the ESP32 through the SPI interface and processes the received data.
-
-The Slave can also return data to the ESP32 during the SPI transaction.
-
-Project Images
-Circuit Diagram
-
-The following Fritzing diagram shows the connections between the ESP32, Arduino Uno, push buttons, and LEDs.
-
-Hardware Setup
-
-The following image shows the hardware setup used for the SPI communication project.
-
-Demo
-
-A demonstration video of the SPI communication between the ESP32 Master and Arduino Uno Slave is included in this repository.
-
-Project Structure
-ESP32-Arduino-SPI-Communication/
-│
-├── SPI_Master.ino
-├── SPI_Slave.ino
-├── SPI-communication-Fritzing.png
-├── SPI-communication.jpg
-├── SPI-communication.mp4
-└── README.md
-Technologies
-ESP32
-Arduino Uno
-SPI
-Hardware SPI
-Embedded C/C++
-Arduino Framework
-Digital Input/Output
-Concepts Demonstrated
-SPI Master/Slave architecture
-Communication between different microcontrollers
-Hardware SPI peripherals
-MOSI, MISO, SCK, and SS signals
-SPI data transfer
-Digital input and output
-Embedded systems interfacing
-Author
-
-Ali Ahmadi
-
-GitHub: @alialone7979
+```text
+Master                         Slave
+  |                              |
+  | -------- MOSI ------------> |
+  | <-------- MISO ------------ |
+  | -------- SCK -------------> |
+  | -------- SS/CS -----------> |
+  |                              |
