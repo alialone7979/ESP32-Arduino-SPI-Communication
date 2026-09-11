@@ -67,3 +67,62 @@ The SPI interface is initialized using:
 
 ```cpp
 SPIClass *spi = new SPIClass(VSPI);
+
+An SPI transaction is started using:
+
+spi->beginTransaction(SPISettings());
+
+Data is exchanged using:
+
+int daryafti = spi->transfer(data);
+Arduino Uno SPI Slave
+
+The Arduino Uno is configured as the SPI Slave.
+
+It receives data from the ESP32 through the SPI interface and processes the received data.
+
+The Slave can also return data to the ESP32 during the SPI transaction.
+
+Project Images
+Circuit Diagram
+
+The following Fritzing diagram shows the connections between the ESP32, Arduino Uno, push buttons, and LEDs.
+
+Hardware Setup
+
+The following image shows the hardware setup used for the SPI communication project.
+
+Demo
+
+A demonstration video of the SPI communication between the ESP32 Master and Arduino Uno Slave is included in this repository.
+
+Project Structure
+ESP32-Arduino-SPI-Communication/
+│
+├── SPI_Master.ino
+├── SPI_Slave.ino
+├── SPI-communication-Fritzing.png
+├── SPI-communication.jpg
+├── SPI-communication.mp4
+└── README.md
+Technologies
+ESP32
+Arduino Uno
+SPI
+Hardware SPI
+Embedded C/C++
+Arduino Framework
+Digital Input/Output
+Concepts Demonstrated
+SPI Master/Slave architecture
+Communication between different microcontrollers
+Hardware SPI peripherals
+MOSI, MISO, SCK, and SS signals
+SPI data transfer
+Digital input and output
+Embedded systems interfacing
+Author
+
+Ali Ahmadi
+
+GitHub: @alialone7979
