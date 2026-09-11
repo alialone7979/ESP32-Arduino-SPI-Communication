@@ -106,3 +106,37 @@ Master                         Slave
   | -------- SCK -------------> |
   | -------- SS/CS -----------> |
   |                              |
+
+| File                             | Description                 |
+| -------------------------------- | --------------------------- |
+| `SPI_Master.ino`                 | SPI Master source code      |
+| `SPI_Slave.ino`                  | SPI Slave source code       |
+| `SPI-communication-Fritzing.png` | Fritzing circuit diagram    |
+| `SPI-communication.jpg`          | Hardware setup              |
+| `SPI-communication.mp4`          | Communication demonstration |
+
+Applications
+
+SPI communication is widely used in embedded systems for interfacing with:
+
+Sensors
+Displays
+Memory devices
+ADC/DAC modules
+RFID modules
+Other microcontrollers and peripherals
+Technologies
+Arduino
+Embedded C/C++
+SPI Communication
+Fritzing
+Microcontroller Interfacing
+Demo
+
+A hardware demonstration of the SPI communication is available in:
+
+SPI-communication.mp4
+
+License
+
+This project is intended for educational and embedded systems learning purposes.
