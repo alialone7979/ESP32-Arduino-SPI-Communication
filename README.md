@@ -97,24 +97,6 @@ The corresponding SPI pins should be connected between the Master and Slave devi
 ## SPI Data Transfer
 
 SPI supports full-duplex communication, meaning data can be transmitted and received simultaneously.
-
-```text
-Master                         Slave
-  |                              |
-  | -------- MOSI ------------> |
-  | <-------- MISO ------------ |
-  | -------- SCK -------------> |
-  | -------- SS/CS -----------> |
-  |                              |
-
-| File                             | Description                 |
-| -------------------------------- | --------------------------- |
-| `SPI_Master.ino`                 | SPI Master source code      |
-| `SPI_Slave.ino`                  | SPI Slave source code       |
-| `SPI-communication-Fritzing.png` | Fritzing circuit diagram    |
-| `SPI-communication.jpg`          | Hardware setup              |
-| `SPI-communication.mp4`          | Communication demonstration |
-
 Applications
 
 SPI communication is widely used in embedded systems for interfacing with:
@@ -135,8 +117,25 @@ Demo
 
 A hardware demonstration of the SPI communication is available in:
 
-SPI-communication.mp4
+![Demo](SPI-communication.mp4)
 
-License
 
-This project is intended for educational and embedded systems learning purposes.
+
+```text
+Master                         Slave
+  |                              |
+  | -------- MOSI ------------> |
+  | <-------- MISO ------------ |
+  | -------- SCK -------------> |
+  | -------- SS/CS -----------> |
+  |                              |
+
+| File                             | Description                 |
+| -------------------------------- | --------------------------- |
+| `SPI_Master.ino`                 | SPI Master source code      |
+| `SPI_Slave.ino`                  | SPI Slave source code       |
+| `SPI-communication-Fritzing.png` | Fritzing circuit diagram    |
+| `SPI-communication.jpg`          | Hardware setup              |
+| `SPI-communication.mp4`          | Communication demonstration |
+
+
